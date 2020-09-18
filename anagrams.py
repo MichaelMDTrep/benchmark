@@ -3,14 +3,13 @@
 """
 Command line utility that accepts a word file and prints a dictionary of
 anagrams for that file.
-
 Module provides a function, find_anagrams(), which can be used to do the same
 for an arbitrary list of strings.
 """
 
 # Your name here, and any other people/sources who helped.
 # Give credit where credit is due.
-__author__ = "???"
+__author__ = "Michael Trepanier got help from Mike Boring"
 
 import sys
 
@@ -27,11 +26,13 @@ def find_anagrams(words):
     Example:
     {'dgo': ['dog'], 'act': ['cat', 'act']}
     """
-    anagrams = {
-        alphabetize(word): [
-            w for w in words
-            if alphabetize(w) == alphabetize(word)]
-        for word in words}
+
+    anagrams = {}
+    for word in words:
+        if alphabetize(word) not in anagrams:
+            anagrams[alphabetize(word)] = [word]
+        else:
+            anagrams[alphabetize(word)].append(word)
     return anagrams
 
 

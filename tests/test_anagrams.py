@@ -1,5 +1,5 @@
 """
-Test Suite for anagrams module. 
+Test Suite for anagrams module.
 Students should only modify only the `test_long` method.
 """
 __author__ = "madarp"
@@ -16,11 +16,10 @@ import subprocess
 sys.dont_write_bytecode = True
 
 # Kenzie devs: change this to 'soln.anagrams' to test solution
-PKG_NAME = 'anagrams'
+PKG_NAME = "anagrams"
 
 
 class TestAnagrams(unittest.TestCase):
-
     @classmethod
     def setUpClass(cls):
         """Performs module import and suite setup at test-runtime"""
@@ -33,9 +32,10 @@ class TestAnagrams(unittest.TestCase):
         t = timeit.Timer(f)
         actual_time = round(t.timeit(number=1), 3)
         failure_text = (
-            f'\nfind_anagrams() took {actual_time:.03f} seconds, which exceeds the '
-            f'benchmark of {benchmark:.03f} seconds'
-            )
+            f"\nfind_anagrams() took {actual_time:.03f} seconds, \
+                which exceeds the "
+            f"benchmark of {benchmark:.03f} seconds"
+        )
         self.assertLessEqual(actual_time, benchmark, failure_text)
 
     def test_correct_result(self):
@@ -44,7 +44,7 @@ class TestAnagrams(unittest.TestCase):
             short_list = f.read().split()
         actual_dict = self.module.find_anagrams(short_list)
         self.assertIsInstance(actual_dict, dict)
-        with open('tests/short_list.json') as f:
+        with open("tests/short_list.json") as f:
             expected_dict = json.loads(f.read())
         self.assertDictEqual(actual_dict, expected_dict)
 
@@ -57,7 +57,6 @@ class TestAnagrams(unittest.TestCase):
     #
     # Students:  Comment out the line below to enable the long test.
     #
-    @unittest.skip("Remove this line once short test passes")
     def test_long(self):
         """Check find_anagrams() with long word list."""
         with open("words/long.txt") as f:
@@ -66,17 +65,16 @@ class TestAnagrams(unittest.TestCase):
 
     def test_flake8(self):
         """Checking for PEP8/flake8 compliance"""
-        result = subprocess.run(['flake8', self.module.__file__])
+        result = subprocess.run(["flake8", self.module.__file__])
         self.assertEqual(result.returncode, 0)
 
     def test_author_string(self):
         """Checking for author string"""
         self.assertIsNotNone(self.module.__author__)
         self.assertNotEqual(
-            self.module.__author__, "???",
-            "Author string is not completed"
-            )
+            self.module.__author__, "???", "Author string is not completed"
+        )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
